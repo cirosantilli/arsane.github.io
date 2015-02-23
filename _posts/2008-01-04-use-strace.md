@@ -13,7 +13,7 @@ This article explains 7 strace examples to get you started.
 
 You can use strace command to trace the execution of any executable. The following example shows the output of strace for the Linux ls command.
 
-```
+```sh
 $  strace ls
 execve("/bin/ls", ["ls"], [/* 21 vars */]) = 0
 brk(0)                                  = 0x8c31000
@@ -31,7 +31,7 @@ fstat64(3, {st_mode=S_IFREG|0644, st_size=65354, ...}) = 0
 
 Be default, strace displays all system calls for the given executable. To display only a specific system call, use the `strace -e` option as shown below.
 
-```
+```sh
 $ strace -e open ls
 open("/etc/ld.so.cache", O_RDONLY)      = 3
 open("/lib/libselinux.so.1", O_RDONLY)  = 3
@@ -52,7 +52,7 @@ The above output displays only the open system call of the ls command. At the en
 
 If you want to trace multiple system calls use the `-e trace=` option. The following example displays both open and read system calls.
 
-```
+```sh
 $ strace -e trace=open,read ls /home
 open("/etc/ld.so.cache", O_RDONLY)      = 3
 open("/lib/libselinux.so.1", O_RDONLY)  = 3
@@ -74,7 +74,7 @@ bala
 
 The following examples stores the strace output to output.txt file.
 
-```
+```sh
 $ strace -o output.txt ls
 Desktop  Documents  Downloads  examples.desktop  libflashplayer.so
 Music  output.txt  Pictures  Public  Templates  Ubuntu_OS  Videos
@@ -97,7 +97,7 @@ You could execute strace on a program that is already running using the process 
 
 For example, if you want to do strace on the firefox program that is currently running, identify the PID of the firefox program.
 
-```
+```sh
 $ ps -C firefox-bin
   PID TTY          TIME CMD
  1725 ?        00:40:50 firefox-bin
@@ -105,8 +105,8 @@ $ ps -C firefox-bin
 
 Use strace -p option as shown below to display the strace for a given process id.
 
-```
-$  sudo strace -p 1725 -o firefox_trace.txt
+```sh
+$ sudo strace -p 1725 -o firefox_trace.txt
 
 $ tail -f firefox_trace.txt
 ```
@@ -115,8 +115,8 @@ Now the execution trace of firefox process will be logged into firefox_trace.txt
 
 Strace will display the following error when your user id does not match the user id of the given process.
 
-```
-$  strace -p 1725 -o output.txt
+```sh
+$ strace -p 1725 -o output.txt
 attach: ptrace(PTRACE_ATTACH, ...): Operation not permitted
 Could not attach to process.  If your uid matches the uid of the target
 process, check the setting of /proc/sys/kernel/yama/ptrace_scope, or try
@@ -127,7 +127,7 @@ again as the root user.  For more details, see /etc/sysctl.d/10-ptrace.conf
 
 To print the timestamp for each strace output line, use the option `-t` as shown below.
 
-```
+```sh
 $ strace -t -e open ls /home
 20:42:37 open("/etc/ld.so.cache", O_RDONLY) = 3
 20:42:37 open("/lib/libselinux.so.1", O_RDONLY) = 3
@@ -147,7 +147,7 @@ bala
 
 Strace also has the option to print the execution time for each system calls as shown below.
 
-```
+```sh
 $ strace -r ls 
      0.000000 execve("/bin/ls", ["ls"], [/* 37 vars */]) = 0
      0.000846 brk(0)                    = 0x8418000
@@ -165,7 +165,7 @@ $ strace -r ls
 
 Using option `-c`, strace provides useful statistical report for the execution trace. The â€œcallsâ€ column in the following output indicated how many times that particular system call was executed.
 
-```
+```sh
 $ strace -c ls /home
 bala
 % time     seconds  usecs/call     calls    errors syscall
