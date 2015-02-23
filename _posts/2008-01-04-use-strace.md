@@ -1,3 +1,8 @@
+---
+layout: post
+title: Use strace to understand Linux
+---
+
 Strace is a debugging tool that will help you troubleshoot issues.
 
 Strace monitors the system calls and signals of a specific program. It is helpful when you do not have the source code and would like to debug the execution of a program. strace provides you the execution sequence of a binary from start to end.
