@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Software developer, working on embedded system development (Linux, VxWorks and MicroController). Interested in operating system internal, functional programming and cloud computing.
+Software developer, working on embedded system development (Linux, VxWorks and MicroController). Interested in operating system internals, functional programming and cloud computing.
 
 ### More Information
 
